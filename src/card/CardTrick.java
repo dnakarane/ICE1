@@ -10,28 +10,26 @@ public class CardTrick {
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
-        Card luckyCard = new Card(5, "Clubs"); // This is the lucky card with value 5 of Clubs
-        // Fill the magic hand with random cards
+        Card luckyCard = new Card(5, "Clubs"); 
+
         for (int i = 0; i < magicHand.length; i++) {
-            int value = random.nextInt(13) + 1; // Values from 1 to 13
-            String suit = Card.SUITS[random.nextInt(4)]; // Suits from the predefined SUITS array
+            int value = random.nextInt(13) + 1; 
+            String suit = Card.SUITS[random.nextInt(4)]; 
             magicHand[i] = new Card(value, suit);
         }
 
-        // Print out the magic hand
         for (Card card : magicHand) {
             System.out.println(card);
         }
 
-        System.out.println("The lucky card is " + luckyCard); // This line informs the user about the lucky card
-        // Ask the user for a card value
+        System.out.println("The lucky card is " + luckyCard); 
+    
         System.out.print("Enter a card value (1-13): ");
         int userValue = scanner.nextInt();
 
-        // Ask the user for a suit using numbers
         System.out.print("Enter a suit (0-3 where 0=Hearts, 1=Diamonds, 2=Clubs, 3=Spades): ");
         int userSuitIndex = scanner.nextInt();
-        // Validate the suit index
+        
         if (userSuitIndex < 0 || userSuitIndex > 3) {
             System.out.println("Invalid suit number entered. Please enter a number between 0 and 3.");
             scanner.close();
@@ -41,7 +39,6 @@ public class CardTrick {
 
         Card userCard = new Card(userValue, userSuit);
 
-        // Search for the user's card in the magic hand
         boolean found = false;
         for (Card card : magicHand) {
             if (card.getValue() == userValue && card.getSuit().equalsIgnoreCase(userSuit)) {
@@ -50,7 +47,6 @@ public class CardTrick {
             }
         }
 
-        // Output the result
         if (userCard.getValue() == luckyCard.getValue() && userCard.getSuit().equalsIgnoreCase(luckyCard.getSuit())) {
             System.out.println("You've found the lucky card!");
         } else if (found) {
