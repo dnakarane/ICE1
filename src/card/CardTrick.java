@@ -10,6 +10,7 @@ public class CardTrick {
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
+        Card luckyCard = new Card(5, "Clubs"); // This is the lucky card with value 5 of Clubs
         // Fill the magic hand with random cards
         for (int i = 0; i < magicHand.length; i++) {
             int value = random.nextInt(13) + 1; // Values from 1 to 13
@@ -22,6 +23,7 @@ public class CardTrick {
             System.out.println(card);
         }
 
+        System.out.println("The lucky card is " + luckyCard); // This line informs the user about the lucky card
         // Ask the user for a card value
         System.out.print("Enter a card value (1-13): ");
         int userValue = scanner.nextInt();
@@ -49,7 +51,9 @@ public class CardTrick {
         }
 
         // Output the result
-        if (found) {
+        if (userCard.getValue() == luckyCard.getValue() && userCard.getSuit().equalsIgnoreCase(luckyCard.getSuit())) {
+            System.out.println("You've found the lucky card!");
+        } else if (found) {
             System.out.println("Your card is in the magic hand.");
         } else {
             System.out.println("Sorry, your card is not in the magic hand.");
